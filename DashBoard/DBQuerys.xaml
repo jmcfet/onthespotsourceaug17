@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="DashBoard.DbQuerys"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DashBoard"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <StackPanel>
+            <Label Name="last"  Height="50" Width="170" HorizontalAlignment="Center" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+                <RadioButton GroupName="Os" Content="today" IsChecked="True" Click="RadioButton_Click"/>
+                <RadioButton Name="plus1" GroupName="Os" Margin="20,0" Content="today + next day" Click="plus1_Click"/>
+                <RadioButton Name="Plus2" GroupName="Os" Content="today + next 2 days" Click="Plus2_Click"/>
+
+
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" Height="60" Margin="10,34,0,0" VerticalAlignment="Top"  Orientation="Horizontal">
+                <Button Name="cpr" Background="LightGray" Content="CPR " Margin="0,0,10,0" Click="button_Click"/>
+                <Button  Name="missing" Background="LightGray" Content="Missing" Margin="0,0,10,0" Click="button_Click"/>
+
+                <Button Name="shirts" Background="LightGray" Content="Shirts"  Margin="0,0,10,0" Click="button_Click"/>
+                <Button Name="bottoms" Background="LightGray" Content="bottoms" Margin="0,0,10,0" Click="button_Click"/>
+                <Button Name="tops" Background="LightGray" Content="tops" Margin="0,0,10,0" Click="button_Click"/>
+                <Button Name="households" Background="LightGray" Margin="0,0,10,0" Click="button_Click"/>
+                <Button Name="Missingonrack" Background="LightGray"  Margin="0,0,10,0" Click="button_Click"/>
+
+            </StackPanel>
+            <DataGrid Name="detailswithCheck" AutoGeneratingColumn="details_AutoGeneratingColumn" HorizontalAlignment="Center" Width="600" Height="300" Visibility="Collapsed">
+                <DataGrid.RowHeaderTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <CheckBox Name="check" IsChecked="False" Checked="check_Checked" />
+                        </Grid>
+                    </DataTemplate>
+                </DataGrid.RowHeaderTemplate>
+            </DataGrid>
+            <DataGrid Name="details"  HorizontalAlignment="Center" Width="600" Height="300" >
+
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</UserControl>

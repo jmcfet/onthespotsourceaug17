@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CA499FB6-721E-460A-B81A-CC74E0B5B9CF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataAccessLayer</RootNamespace>
+    <AssemblyName>DataAccessLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\..\..\nlog\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Phidget21.NET, Version=2.1.8.243, Culture=neutral, PublicKeyToken=c2b1f2a3594bce52, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Phidgets\Phidget21.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyAccess.cs" />
+    <Compile Include="AssemblyDB\Alert.cs" />
+    <Compile Include="AssemblyDB\AssemAutoNumber.cs" />
+    <Compile Include="AssemblyDB\Assembly.cs" />
+    <Compile Include="AssemblyDB\AssemblyBay.cs" />
+    <Compile Include="AssemblyDB\AssemblySetting.cs" />
+    <Compile Include="AssemblyDB\AutoSort.cs" />
+    <Compile Include="AssemblyDB\Invoice.cs" />
+    <Compile Include="AssemblyDB\InvoiceDetail.cs" />
+    <Compile Include="AssemblyDB\InvoicesAssembled.cs" />
+    <Compile Include="AssemblyDB\InvoicesTest.cs" />
+    <Compile Include="AssemblyDB\Location.cs" />
+    <Compile Include="AssemblyDB\StorageInvoice.cs" />
+    <Compile Include="AssemblyDB\Version.cs" />
+    <Compile Include="BCSDb\Appointment.cs" />
+    <Compile Include="BCSDb\BCSContext.cs" />
+    <Compile Include="BCSDb\Bin.cs" />
+    <Compile Include="BCSDb\Category.cs" />
+    <Compile Include="BCSDb\Configuration.cs" />
+    <Compile Include="BCSDb\CPR.cs" />
+    <Compile Include="BCSDb\GSS.cs" />
+    <Compile Include="BCSDb\Item.cs" />
+    <Compile Include="BCSDb\NoteForCustomer.cs" />
+    <Compile Include="BCSDb\OTISIdsToFabId.cs" />
+    <Compile Include="BCSDb\Printer.cs" />
+    <Compile Include="BCSDb\QCSInfo.cs" />
+    <Compile Include="CalendarAccess.cs" />
+    <Compile Include="DashQueries.cs" />
+    <Compile Include="Data\Repository.cs" />
+    <Compile Include="DBAccess.cs" />
+    <Compile Include="Migrations\201808151921262_InitialMigration.cs" />
+    <Compile Include="Migrations\201808151921262_InitialMigration.Designer.cs">
+      <DependentUpon>201808151921262_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Appointment.cs" />
+    <Compile Include="Models\AutosortInfo.cs" />
+    <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\BindableObject.cs" />
+    <Compile Include="Models\Bins.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\CustomerInfo.cs" />
+    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\GarmentIds.cs" />
+    <Compile Include="Models\GSS.cs" />
+    <Compile Include="Models\InterogatorInfo.cs" />
+    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\missingPieceInfo.cs" />
+    <Compile Include="Models\OrdersLostOnRacktoMissingRackLocationData.cs" />
+    <Compile Include="Models\printers.cs" />
+    <Compile Include="Models\QCS.cs" />
+    <Compile Include="Models\ShirtInfo.cs" />
+    <Compile Include="Models\Store.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SharedFiles\BaseViewModel.cs" />
+    <Compile Include="StoreDB\AppliedCr.cs" />
+    <Compile Include="StoreDB\AutoNumber.cs" />
+    <Compile Include="StoreDB\BillCyclePeriod.cs" />
+    <Compile Include="StoreDB\BillingCenter.cs" />
+    <Compile Include="StoreDB\BillingCycle.cs" />
+    <Compile Include="StoreDB\Campaign.cs" />
+    <Compile Include="StoreDB\CardBillAutoCredit.cs" />
+    <Compile Include="StoreDB\CardBilling.cs" />
+    <Compile Include="StoreDB\CCAudit.cs" />
+    <Compile Include="StoreDB\CCKey.cs" />
+    <Compile Include="StoreDB\CCPaymentContract.cs" />
+    <Compile Include="StoreDB\CCSetting.cs" />
+    <Compile Include="StoreDB\CCStationSetting.cs" />
+    <Compile Include="StoreDB\ClerkDrawer.cs" />
+    <Compile Include="StoreDB\ClockInAccount.cs" />
+    <Compile Include="StoreDB\Contact.cs" />
+    <Compile Include="StoreDB\Credit.cs" />
+    <Compile Include="StoreDB\Customer.cs" />
+    <Compile Include="StoreDB\DeletedCust.cs" />
+    <Compile Include="StoreDB\DeliveryCenter.cs" />
+    <Compile Include="StoreDB\DeliveryGroup.cs" />
+    <Compile Include="StoreDB\DeliveryLog.cs" />
+    <Compile Include="StoreDB\dtproperty.cs" />
+    <Compile Include="StoreDB\EditedCust.cs" />
+    <Compile Include="StoreDB\EmailLog.cs" />
+    <Compile Include="StoreDB\Employee.cs" />
+    <Compile Include="StoreDB\EmployeeDefault.cs" />
+    <Compile Include="StoreDB\GiftCardType.cs" />
+    <Compile Include="StoreDB\GiftTransaction.cs" />
+    <Compile Include="StoreDB\GLAccount.cs" />
+    <Compile Include="StoreDB\GLJournal.cs" />
+    <Compile Include="StoreDB\Heatseal.cs" />
+    <Compile Include="StoreDB\ImageLibrary.cs" />
+    <Compile Include="StoreDB\Inventory.cs" />
+    <Compile Include="StoreDB\Invoice.cs" />
+    <Compile Include="StoreDB\InvoiceAdjust.cs" />
+    <Compile Include="StoreDB\InvoiceDetail.cs" />
+    <Compile Include="StoreDB\InvPaid.cs" />
+    <Compile Include="StoreDB\KioskSetting.cs" />
+    <Compile Include="StoreDB\Lot.cs" />
+    <Compile Include="StoreDB\MerchantQTY.cs" />
+    <Compile Include="StoreDB\MergedCust.cs" />
+    <Compile Include="StoreDB\NoSale.cs" />
+    <Compile Include="StoreDB\Order.cs" />
+    <Compile Include="StoreDB\OrderDetail.cs" />
+    <Compile Include="StoreDB\OrderProcess.cs" />
+    <Compile Include="StoreDB\Original.cs" />
+    <Compile Include="StoreDB\OverdueStat.cs" />
+    <Compile Include="StoreDB\PasswordHistory.cs" />
+    <Compile Include="StoreDB\Payment.cs" />
+    <Compile Include="StoreDB\Physical.cs" />
+    <Compile Include="StoreDB\PostalCode.cs" />
+    <Compile Include="StoreDB\Preference.cs" />
+    <Compile Include="StoreDB\PurgedCust.cs" />
+    <Compile Include="StoreDB\Reason.cs" />
+    <Compile Include="StoreDB\Receipt.cs" />
+    <Compile Include="StoreDB\Recurring.cs" />
+    <Compile Include="StoreDB\RecurringGroup.cs" />
+    <Compile Include="StoreDB\RouteItem.cs" />
+    <Compile Include="StoreDB\RouteStop.cs" />
+    <Compile Include="StoreDB\SalesTax.cs" />
+    <Compile Include="StoreDB\ScanLog.cs" />
+    <Compile Include="StoreDB\SOFBatch.cs" />
+    <Compile Include="StoreDB\StatementBalance.cs" />
+    <Compile Include="StoreDB\StatementHistory.cs" />
+    <Compile Include="StoreDB\Stock.cs" />
+    <Compile Include="StoreDB\Store.cs" />
+    <Compile Include="StoreDB\StoreContext.cs" />
+    <Compile Include="StoreDB\TaxAuthority.cs" />
+    <Compile Include="StoreDB\TimeCard.cs" />
+    <Compile Include="StoreDB\Version.cs" />
+    <Compile Include="StoreDB\WirelessCarrier.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201808151921262_InitialMigration.resx">
+      <DependentUpon>201808151921262_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

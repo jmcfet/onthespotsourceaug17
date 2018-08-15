@@ -1,0 +1,163 @@
+﻿<Window x:Class="BCS.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:uc="clr-namespace:LedControl;assembly=Led"
+        xmlns:local="clr-namespace:BCS"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <SolidColorBrush x:Key="brushWatermarkBackground" Color="White" />
+        <SolidColorBrush x:Key="brushWatermarkForeground" Color="LightSteelBlue" />
+        <SolidColorBrush x:Key="brushWatermarkBorder" Color="Indigo" />
+
+
+        <Style x:Key="TextLabel" TargetType="TextBlock" >
+            <Setter Property="Height" Value="24" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+        <Style x:Key="NameLabel" TargetType="TextBlock" >
+            <Setter Property="Height" Value="40" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="FontSize" Value="25" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="LayoutRoot" Background="#FF0C0C0C">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" >
+            <Grid.Background>
+
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFFFFFFF" Offset="1"/>
+                    <GradientStop Color="#FF5E5757"/>
+
+                </LinearGradientBrush>
+
+            </Grid.Background>
+            <StackPanel Orientation="Horizontal" Grid.Column="0">
+                <Label Content="Phidgit"  Height="31" Name="label1" FontSize="15" Width="60" Visibility="Collapsed" />
+                <uc:Led x:Name="led1" Flashing="False" FlashingPeriod="500" ColorNull="Gray" ColorOn="Green" ColorOff="Red"  Visibility="Collapsed" />
+                <Label Content="Database" FontSize="15" Height="31" Name="label2" Width="73" />
+                <uc:Led x:Name="led2"  ColorNull="Gray" ColorOn="Green" ColorOff="Red" ></uc:Led>
+                <Label Content="Password" Height="31" Name="label4" Width="75"  FontSize="15" Visibility="Collapsed"/>
+                <PasswordBox  Height="23" Name="passwordBox1" Width="120" Visibility="Collapsed"/>
+                <Button Content=">" Height="21" Name="passwordEntered" Width="36"  Click="passwordEntered_Click" Visibility="Collapsed"/>
+
+                <Button Content="{Binding ClassifyButtonText}" Height="40" Name="Classify" Visibility="Collapsed" Width="77" Margin="12" Click="Classify_Click"/>
+                <Button Content="{Binding ReClassifyButtonText}" Height="40" Name="ReClassify" Visibility="Collapsed" Width="88" Click="Reclassify_click" />
+                <Button Content="{Binding QuickReClassifyButtonText}" Height="40" Name="QuickReClassify" Visibility="Collapsed" Width="120" Click="QickClassify_Click"/>
+                <Button Content="{Binding BatchButtonText}" Height="40" Name="BatchBCS" Visibility="Collapsed" Width="120" Click="BatchBCS_Click"/>
+                <!--<Button Content="Get Picture" Height="40" Name="TakePic" Margin="12 0"  Visibility="{Binding BarcodeEntered, Converter={StaticResource BooleanToVisibilityConverter}}" Width="120" Click="TakePic_Click"/>
+                <Button Content="Save Picture" Height="40" Name="SavePic" Visibility="{Binding bGotNewImage, Converter={StaticResource BooleanToVisibilityConverter}}" Width="120" Click="SavePic_Click"/>-->
+                <Button Content="Version" Height="21" Name="version" Width="67" Margin="12" Click="version_Click" />
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" x:Name="LoadingState">
+                <TextBlock Height="53" HorizontalAlignment="Left" Margin="373,11,0,0" Name="DBErrorMsg" Foreground="White" Text="" FontSize="20" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" />
+                <TextBlock Height="32" HorizontalAlignment="Left" Margin="96,11,0,0" Name="textBlock1" Text="System initializing .. please wait" FontSize="15" Foreground="White" VerticalAlignment="Top" Width="282" />
+            </Grid>
+            <Grid Name="LoadedDone" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Black" Visibility="Visible" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="450"></RowDefinition>
+                    <RowDefinition Height="110"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Visibility="Collapsed" Background="Red" Height="60" Name="ErrorTxt">
+                    <TextBlock Height="33" HorizontalAlignment="Center" Margin="3,6,0,0" Name="Errormsg" Text="Please place item in right bin" FontSize="20"  VerticalAlignment="Top" TextAlignment="Center" TextWrapping="Wrap"  />
+                </Grid>
+
+                <Grid  HorizontalAlignment="Stretch" Grid.Row="1" Name="TopGrid" VerticalAlignment="Top" Visibility="Hidden" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="96*"></ColumnDefinition>
+                        <ColumnDefinition Width="116*"></ColumnDefinition>
+                        <ColumnDefinition Width="141*"></ColumnDefinition>
+                        <ColumnDefinition Width="106*"></ColumnDefinition>
+                        <ColumnDefinition Width="106*"></ColumnDefinition>
+                        <ColumnDefinition Width="35*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="100"></RowDefinition>
+                        <RowDefinition Height="100"></RowDefinition>
+                        <RowDefinition Height="4"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="1" Name="CustomerName"
+                         FontWeight="Bold" Style="{StaticResource NameLabel}" ></TextBlock>
+                    <TextBlock Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="1" Name="CustomerNote" Background="Red" Text="this is a test"
+                         FontWeight="Bold" Style="{StaticResource NameLabel}" Height="35" Visibility="Hidden"></TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Name="BarCodeLabel"
+                         FontWeight="Bold" Style="{StaticResource TextLabel}" >Item Bar Code:</TextBlock>
+                    <TextBlock Name="BarcodeLabel"  Height="30" HorizontalAlignment="Stretch" Text="Please scan item" TextAlignment="Center" Foreground="{StaticResource brushWatermarkForeground}" Grid.Row="3" Grid.Column="2" 
+                         Visibility="{Binding ElementName=Barcode, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" FontSize="16"  />
+
+                    <TextBox  Foreground="White"
+                         Background="Transparent" TextAlignment="Center"
+                        HorizontalAlignment="Stretch"  Grid.Row="3" Grid.Column="2"
+                        Name="Barcode"  Height="40" FontSize="20"
+                        VerticalAlignment="Top" TextDecorations="None" />
+
+                    <StackPanel x:Name="ButRow1" Orientation="Horizontal"  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="5"></StackPanel>
+                    <StackPanel x:Name="ButRow2" Orientation="Horizontal"  Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="5"/>
+                    <StackPanel  Name="Codes" Orientation="Vertical" Grid.Row="5" Grid.Column="1"  Grid.RowSpan="2"  Visibility="Collapsed">
+                        <TextBlock Text="SucessFul" Height="20" Background="LightGreen"></TextBlock>
+                        <ListBox ItemsSource="{Binding scancodes}" Width="250" Margin="0,5,0,10"  Background="Azure" />
+                    </StackPanel>
+                    <StackPanel  Name="ErrorCodes" Orientation="Vertical" Grid.Row="5" Grid.Column="4"  Grid.RowSpan="2"  Visibility="Collapsed">
+                        <TextBlock Text="Failed" Height="20" Background="Red"></TextBlock>
+                        <ListBox  ItemsSource="{Binding errorcodes}" Width="250" Margin="0,5,0,10"  Background="Azure"  />
+                    </StackPanel>
+                    <Button Content="Clear" Grid.Column="3" Grid.Row="3" Height="30" HorizontalAlignment="Left" Margin="34,4,0,0" Name="Cleartext" VerticalAlignment="Top" Width="47" Click="Cleartext_Click" />
+                    <Button Content="Note" Grid.Column="4" Grid.Row="3" Height="30" HorizontalAlignment="Left" Margin="34,4,0,0" Name="Note" VerticalAlignment="Top" Width="55" Click="Note_Click"/>
+                </Grid>
+
+                <Grid  Grid.Row="2" HorizontalAlignment="Stretch"  Name="grid1" VerticalAlignment="Top" Visibility="Hidden">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="60"></ColumnDefinition>
+                        <ColumnDefinition Width="80"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <TextBlock  Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" FontSize="25"  Foreground="White" Text="Do something ffsdfff"   Name="Action" VerticalAlignment="Top" Grid.Column="1" />
+                    <Button Content="Done" Grid.Row="2" HorizontalAlignment="Center"  Name="Wizard" VerticalAlignment="Top" Width="60" Click="Next_Click" Grid.Column="4" Height="33" />
+                    <Button Content="Cancel" Grid.Row="2" HorizontalAlignment="Center"  Name="Cancel" VerticalAlignment="Top" Width="60" Click="Cancel_Click" Grid.Column="5" Height="33" />
+
+
+
+                </Grid>
+
+
+
+            </Grid>
+
+
+        </Grid>
+    </Grid>
+</Window>
