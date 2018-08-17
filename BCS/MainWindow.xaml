@@ -128,7 +128,7 @@
                         <ListBox  ItemsSource="{Binding errorcodes}" Width="250" Margin="0,5,0,10"  Background="Azure"  />
                     </StackPanel>
                     <Button Content="Clear" Grid.Column="3" Grid.Row="3" Height="30" HorizontalAlignment="Left" Margin="34,4,0,0" Name="Cleartext" VerticalAlignment="Top" Width="47" Click="Cleartext_Click" />
-                    <Button Content="Note" Grid.Column="4" Grid.Row="3" Height="30" HorizontalAlignment="Left" Margin="34,4,0,0" Name="Note" VerticalAlignment="Top" Width="55" Click="Note_Click"/>
+                    <Button Content="Note" Grid.Column="4" Grid.Row="3" Height="30" HorizontalAlignment="Left" Margin="34,4,0,0" Name="NoteButton" VerticalAlignment="Top" Width="55" Click="Note_Click" Visibility="Hidden"/>
                 </Grid>
 
                 <Grid  Grid.Row="2" HorizontalAlignment="Stretch"  Name="grid1" VerticalAlignment="Top" Visibility="Hidden">

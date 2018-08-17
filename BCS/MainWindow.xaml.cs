@@ -32,6 +32,7 @@ namespace BCS
         BCSandGSSVM vm;
         static InterfaceKit ifKit;
         DispatcherTimer PhigTimer;
+        Cursor oldcursor = null;
         Logger logger = LogManager.GetLogger("BCS");
        
         public MainWindow()
@@ -62,6 +63,7 @@ namespace BCS
 
             //Hook the basica event handlers
             ifKit.Attach += new AttachEventHandler(PhidgitController_Attach);
+            oldcursor = this.Cursor;
             this.Cursor = Cursors.Wait;
             //Open the object for device connections
             ifKit.open();
@@ -139,7 +141,7 @@ namespace BCS
 
             this.Dispatcher.Invoke(new Action(delegate ()     //use dispatcher to update UI
             {
-                this.Cursor = Cursors.None;
+                  this.Cursor = oldcursor;
                 if (vm.DBerrormsg == string.Empty)
                 {
                     led2.ColorOn = Colors.Green;
@@ -439,13 +441,14 @@ namespace BCS
                     return;
                 }
                 vm.GetCustomer(assemblyInfo.CustomerID);
-                Note.Content = "Add Note";
+                NoteButton.Visibility = Visibility.Visible;
+                NoteButton.Content = "Add Note";
                 CustomerNote.Visibility = Visibility.Hidden;
                 if (vm.activeCustomer.Note != null)
                 {
                     CustomerNote.Text = vm.activeCustomer.Note;
                     CustomerNote.Visibility = Visibility.Visible;
-                    Note.Content = "Edit Note";
+                    NoteButton.Content = "Edit Note";
                     System.Media.SystemSounds.Beep.Play();
                 }
                 CustomerName.Text = vm.activeCustomer.FirstName + " " + vm.activeCustomer.LastName;
@@ -660,6 +663,7 @@ namespace BCS
             Barcode.Text = "";
             Barcode.Focus();
             BarcodeChars = 0;
+            NoteButton.Visibility = Visibility.Hidden;
         }
         void ClearItemFields()
         {
@@ -668,7 +672,7 @@ namespace BCS
             ButRow2.Visibility = Visibility.Collapsed;
             Barcode.Text = "";
             BarcodeChars = 0;     //reenable the timer for reading barcode
-            CustomerNote.Visibility = Visibility.Hidden;
+            NoteButton.Visibility = Visibility.Hidden;
             Barcode.Focus();
 
         }
@@ -798,6 +802,8 @@ namespace BCS
 
         private void Note_Click(object sender, RoutedEventArgs e)
         {
+            if (assemblyInfo == null)
+                return;
             GetNote popup = new GetNote(vm);
             popup.ShowDialog();
             if (vm.Note == null || vm.Note.Count() == 0)
